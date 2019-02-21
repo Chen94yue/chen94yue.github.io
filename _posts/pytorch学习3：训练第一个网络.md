@@ -1,0 +1,87 @@
+首先torch.Tensor是整个框架的核心，所有的操作都是基于其展开，当完成前向运算后，可以通过调用.backward()来进行反向传播，梯度会被自动的计算，并且存在.grad中。
+
+可以调用.detach()来关闭一个tensor，使其不被tracking。
+
+当网络中的某一个tensor不需要梯度时，可以使用torch.no_grad()来处理。
+
+巴拉巴拉巴拉，官网上的解释太复杂了，看不懂在干啥，直接看代码吧。
+
+首先：
+```
+import torch
+```
+创建一个tensor，并且设requires_grad=Ture（不写的话默认为false，可以调用.requires_grad_(...)来改变，缺省值为ture）
+```
+x = torch.ones(2, 2, requires_grad=True)
+print(x)
+```
+输出为：
+```
+tensor([[ 1.,  1.],
+        [ 1.,  1.]])
+```
+也就是说生成了一个2*2的矩阵，并且在使用时计算该矩阵的梯度。
+比如对该tensor进行一个操作
+```
+y = x + 2
+print(y)
+```
+输出可想而知：
+```
+tensor([[ 3.,  3.],
+        [ 3.,  3.]])
+```
+y是由x生成的，存在一个生成函数，因此可以调用print(y.grad_fn)查看，输出为：
+```
+<AddBackward0 object at 0x7fb9f73ea518>
+```
+再对y做一个操作：
+```
+z = y * y * 3
+out = z.mean()
+
+print(z, out)
+```
+输出为：
+```
+tensor([[ 27.,  27.],
+        [ 27.,  27.]]) tensor(27.)
+```
+相当于矩阵相乘后和常数相乘，mean()用于取矩阵中参数的均值。
+
+现在进行反向传播，使用：
+```
+out.backward()
+print(x.grad)
+```
+这样输出传递到x的梯度为：
+```
+tensor([[ 4.5000,  4.5000],
+        [ 4.5000,  4.5000]])
+```
+
+使用链式法则推一下：
+dout/dyi = d(1/4(y1+y2+y3+y4))
+对于每一个zi倒数都是1/4
+对于每一个zi根据矩阵的乘法，都由每一个yi的平方加另外两个yj，yk的乘积得到，求导后为6yi，yi=xi+2,故out对x的倒数为1/4*6*（xi+2）= 4.5 （x取值为1)
+
+
+下面有一段计算梯度的代码：
+```
+x = torch.randn(3, requires_grad=True)
+
+y = x * 2
+while y.data.norm() < 1000:
+    y = y * 2
+
+print(y)
+gradients = torch.tensor([0.1, 1.0, 0.0001], dtype=torch.float)
+y.backward(gradients)
+
+print(x.grad)
+```
+最后的输出结果为：
+```
+tensor([  51.2000,  512.0000,    0.0512])
+```
+这里y相当于是一种计算规则，其实与输入的x无关，当输入是[0.1, 1.0, 0.0001]，经多规则y的计算，反向传播得到输入位置的梯度，相当于对y的平方求了9此倒数，结果是dout/din = 512*in，所以输出是这样。

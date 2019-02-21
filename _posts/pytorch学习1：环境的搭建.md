@@ -1,0 +1,19 @@
+#环境搭建
+ubuntu14.04+anaconda2+python2.7
+首先在conda中新建一个环境：
+> conda create --name pytorch_learn python=2.7
+ 
+进入该环境：
+>source activate pytorch_learn
+
+安装pytorch,（可参考[官网](https://pytorch.org/)）这里根据我的环境，按照官网的方式：
+>conda install pytorch torchvision -c pytorch
+
+后续可能需要两个常用的工具包，在此一并安装：
+>conda install pandas
+conda install scikit-learn
+
+以上pytorch的环境基本安装完毕，可以使用了。
+
+下面将按照官网上的教程进行学习。
+python的调试使用pycharm，可以自行去[官网](http://www.jetbrains.com/pycharm/)下载，使用edu的邮箱，可以申请免费的完整版使用权限。

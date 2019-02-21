@@ -1,0 +1,30 @@
+pytorch在GPU并行方面还算很方便。在定义好model之后只需要使用一行：
+```python
+model = torch.nn.DataParallel(model)
+```
+即可实现在所有GPU上并行运算。
+但是有时候直接占用所的GPU是没有必要的，如果要指定GPU，可以在DataParallel中增加一个参数：
+```python
+model = torch.nn.DataParallel(model, device_ids=[0,1])
+```
+比如下面就实现了只使用0，1编号的两块GPU。
+这时候如果想使用2，3两块GPU，使用相同的代码：
+```python
+model = torch.nn.DataParallel(model, device_ids=[2,3])
+```
+在运行时会报出如下错误：
+```bash
+RuntimeError: all tensors must be on devices[0]
+```
+该错误的解决方式有很多，这里推荐使用一种最简单的，在运行代码的时候，调整程序可见的GPU即可，具体而言就是将原先的运行指令：
+```bash
+python train.py
+```
+改为
+```bash
+CUDA_VISIBLE_DEVICES=2,3  python train.py
+```
+而程序中还是写为：
+```python
+model = torch.nn.DataParallel(model, device_ids=[0,1])
+```
