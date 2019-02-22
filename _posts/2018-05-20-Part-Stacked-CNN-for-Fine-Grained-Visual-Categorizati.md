@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Part-Stacked-CNN-for-Fine-Grained-Visual-Categorizati
+subtitle:   Fine-grained
+date:       2018-05-20
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Fine-grained
+    - Deep Learning
+---
+
 目录：
 [2016[CVPR]-Embedding Label Structures for Fine-Grained Feature Representation](https://arxiv.org/pdf/1512.02895)
 [2016[CVPR]-Learning Deep Representations of Fine-Grained Visual Descriptions](https://arxiv.org/pdf/1605.05395)

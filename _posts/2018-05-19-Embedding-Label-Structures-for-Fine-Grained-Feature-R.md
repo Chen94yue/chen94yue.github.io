@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Embedding-Label-Structures-for-Fine-Grained-Feature-R
+subtitle:   Fine-grained
+date:       2018-05-19
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Fine-grained
+    - Deep Learning
+---
+
 前言：
 关于Fine-grained的工作之前没有接触过。所以打算从六篇论文开始，也算是一个学习的过程。因为没有基础，可能在文章理解上会存在偏差，如果文章中有什么问题，欢迎指正。
 目录：

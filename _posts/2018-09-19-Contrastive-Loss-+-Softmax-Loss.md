@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Contrastive-Loss-+-Softmax-Loss
+subtitle:   Classification
+date:       2018-09-19
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Classification
+    - Deep Learning
+---
+
 任务背景：用户上传的图像中的商品进行分类，将其划分为12大类。
 现有模型：Resnet-50
 初步计划：在Softmax Loss的基础上增加Contrastive Loss进行约束

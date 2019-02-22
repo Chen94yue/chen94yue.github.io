@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      Repulsion-Loss-Detecting-Pedestrians-in-a-Crowd
+subtitle:   Detection
+date:       2018-04-12
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Detection
+    - Deep Learning
+---
 18年CVPR收录的论文目录点[这里](http://cvpr2018.thecvf.com/program/main_conference)
 
 粗略估计，今年做检测任务的共有103篇，跟行人有关的研究有50篇，其中大量研究的任务是行人重识别，研究道路行人的有五篇，主要针对的是拥挤场景，本文为其中之一。[本文链接](https://arxiv.org/abs/1711.07752)

@@ -1,3 +1,17 @@
+---
+layout:     post
+title:      Detectron平台下实现Cityperson数据库的使用
+subtitle:   Detection
+date:       2018-05-18
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Detection
+    - Detectron
+    - Deep Learning
+---
+
 Detectron平台做检测的应该都知道，网上关于配置的教程也很多，应该使用的挺多的。该平台对COCO数据集支持良好。
 Cityperson数据集，在16年CVPR上被提出，是张姗姗一波人在cityscapes数据集上进行标注得到的行人检测数据集。做行人检测的应该都不陌生。[论文地址](https://arxiv.org/abs/1702.05693)，[数据库地址](https://www.cityscapes-dataset.com/)，[张姗姗提供的数据库地址](https://bitbucket.org/shanshanzhang/citypersons)
 这篇文章中，我将详细介绍如何在Detectron平台下实现Cityperson数据集的训练和测试。

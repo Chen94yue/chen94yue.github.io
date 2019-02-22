@@ -1,16 +1,15 @@
 ---
 layout:     post
-title:      排雷
-subtitle:   detection
-date:       2017-01-06
-author:     BY
-header-img: img/post-bg-ios9-web.jpg
+title:      Detectron平台的配置排雷
+subtitle:   Detection
+date:       2018-04-20
+author:     Shaozi
+header-img: 
 catalog: true
 tags:
-    - iOS
-    - ReactiveCocoa
-    - 函数式编程
-    - 开源框架
+    - Detection
+    - Detectron
+    - Deep Learning
 ---
 
 Detectron平台是什么，做检测的各位小伙伴应该不用再做过多的介绍了。刚出的时候配置过一次该平台，没有出现什么问题。caffe2和pytorch合并后似乎再搭建该平台，就有点坑了。遇到了不少问题，调试了好几天，因为比较菜，每次环境乱了都重装一遍系统，最后终于成功了，网上很多解决方法都不太新，现将我遇到的问题总结如下。

@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Pytorch学习9：Tensor
+subtitle:   Pytorch
+date:       2018-05-06
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Pytorch
+    - Deep Learning
+---
+
 虽然我在前面写到没有必要去阅读整个官方文档，但是在开发过程中发现，如果对整个文档特别是关于tensor的操作和函数有一定的了解，那么实际运用起来是事半功倍的。只能说一句“真香”来概括我现在的心情了。所以后面还是会详细的把官方文档中所有的函数做一个学习和总结。这一部分工程量很大，不知道啥时候可以完成。。。。
 
 #Tensors

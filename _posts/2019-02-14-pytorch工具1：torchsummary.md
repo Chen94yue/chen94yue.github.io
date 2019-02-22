@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      Pytorch工具1：torchsummary
+subtitle:   Pytorch
+date:       2019-02-14
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Pytorch
+    - Deep Learning
+---
+
 最近稍微有点闲，就开一个新坑吧，虽然之前很多坑都没有填上。
 在这个系列中我将把我在开发过程中使用过的小工具做一个简单的总结。先从一个简单的工具torchsummary开始吧。
 安装方法：

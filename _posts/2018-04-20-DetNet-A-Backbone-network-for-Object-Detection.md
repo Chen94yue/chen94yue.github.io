@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      DetNet-A-Backbone-network-for-Object-Detection
+subtitle:   Detection
+date:       2018-04-20
+author:     Shaozi
+header-img: 
+catalog: true
+tags:
+    - Detection
+    - Deep Learning
+---
+
 这是清华和旷视的团队最新的研究成果。设计了一种专门用于检测的网络Detnet。文章首先指明了检测任务和分类任务的不同，这一点在FPN的论文中也已经提到。并且提到目前的方法大都采用增加额外的层来应对多尺度的问题。
 
 目前的检测算法都是基于分类的主干网络（VGG16等）这样的设计存在三个问题：
