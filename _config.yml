@@ -1,10 +1,10 @@
 # Site settings
 title: ShaoZi's Blog
 SEOTitle: 陈勺子的博客 | ShaoZi's Blog
-header-img: img/background.jpg
+header-img: img/background_small.jpg
 email: chenyue21@jd.com
 description: "Hello World."
-keyword: "1，2，3，4"
+keyword: "JD AI Research"
 url: "chen94yue.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/chen94yue/chen94yue.github.io.git" # you code repository
@@ -12,7 +12,7 @@ github_repo: "https://github.com/chen94yue/chen94yue.github.io.git" # you code r
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Hello World!"
-sidebar-avatar: /img/ShaoZi.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/IMG_6333.JPG      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
