@@ -7,8 +7,8 @@ author:     Shaozi
 header-img: 
 catalog: true
 tags:
-    - caffe
-    - pytorch
+    - Caffe
+    - Pytorch
 ---
 
 问题背景：
