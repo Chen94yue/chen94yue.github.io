@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      DetNet-A-Backbone-network-for-Object-Detection
+title:      DetNet A Backbone network for Object Detection
 subtitle:   Detection
 date:       2018-04-20
 author:     Shaozi

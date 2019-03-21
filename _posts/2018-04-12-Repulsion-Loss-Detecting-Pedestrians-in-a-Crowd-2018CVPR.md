@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Repulsion-Loss-Detecting-Pedestrians-in-a-Crowd
+title:      Repulsion Loss Detecting Pedestrians in a Crowd
 subtitle:   Detection
 date:       2018-04-12
 author:     Shaozi

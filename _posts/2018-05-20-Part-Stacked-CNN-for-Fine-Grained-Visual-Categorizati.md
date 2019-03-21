@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Part-Stacked-CNN-for-Fine-Grained-Visual-Categorizati
+title:      Part Stacked CNN for Fine Grained Visual Categorizati
 subtitle:   Fine-grained
 date:       2018-05-20
 author:     Shaozi

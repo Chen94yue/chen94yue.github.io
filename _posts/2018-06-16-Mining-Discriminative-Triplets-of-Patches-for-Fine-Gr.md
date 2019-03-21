@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Mining-Discriminative-Triplets-of-Patches-for-Fine-Gr
+title:      Mining Discriminative Triplets of Patches for Fine Gr
 subtitle:   Fine-grained
 date:       2018-06-16
 author:     Shaozi
