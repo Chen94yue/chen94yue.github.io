@@ -13,7 +13,7 @@ tags:
 
 原始的torchvision工具包只支持PIL图像的各种增强操作，模型转换为caffe后，输入图像存在偏差，导致模型性能下降。为了消除该问题，需要实现一套基于opencv的图像增强工具，本文在原先torchvision.transform的基础上进行修改，主要涉及两个文件：functional.py和transforms.py，测试通过的工具包会在文末的地址开源。
 
-# functional
+# functional.py (function)
 
 （\*为较为常用的函数）
 
@@ -149,4 +149,114 @@ tags:
 
 修改：考虑opencv的灰度图本来就是相同的三个通道，故不修改该函数。
 
-# tranforms
+# tranforms (class)
+
+## 1. Compose
+
+保持原样
+
+## 2. ToTensor
+
+保持原样
+
+## 3. Normalize
+
+保持原样，Pytorch的均一化方法
+
+## 4. NormalizeCaffe(新增)
+
+input: mean(eg:[0.5, 0.5, 0.5]); scale(defult:[1,1,1])
+按照caffe的均一化方法计算
+
+## 5. Resize
+
+修改PIL的差值方法设置为opencv
+
+## 6. Scale
+
+保持原样
+
+## 7. CenterCrop
+
+保持原样
+
+## 8. Pad
+
+保持原样
+
+## 9. Lambda
+
+保持原样
+
+## 10. RandomTransforms
+
+保持原样
+
+## 11. RandomApply
+
+保持原样
+
+## 12. RandomOrder
+
+保持原样
+
+## 13. RandomChoice
+
+保持原样
+
+## 14. RandomCrop
+
+修改PIL的差值方法设置为opencv
+
+## 15. RandomHorizontalFlip
+
+保持原样
+
+## 16. RandomVerticalFlip
+
+保持原样
+
+## 17. RandomResizedCrop
+
+修改PIL的差值方法设置为opencv
+
+## 18. RandomSizedCrop
+
+保持原样
+
+## 19. FiveCrop
+
+保持原样
+
+## 20. TenCrop
+
+保持原样
+
+## 21. LinearTransformation
+
+保持原样
+
+## 22. ColorJitter
+
+保持原样
+
+## 23. RandomRotation
+
+保持原样
+
+## 24. RandomAffine
+
+暂时删除
+
+## 25. Grayscale
+
+删除
+
+## 26. RandomGrayscale
+
+删除
+
+
+
+
+ 
