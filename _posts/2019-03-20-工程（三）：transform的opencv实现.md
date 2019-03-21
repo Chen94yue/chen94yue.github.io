@@ -13,7 +13,7 @@ tags:
 
 原始的torchvision工具包只支持PIL图像的各种增强操作，模型转换为caffe后，输入图像存在偏差，导致模型性能下降。为了消除该问题，需要实现一套基于opencv的图像增强工具，本文在原先torchvision.transform的基础上进行修改，主要涉及两个文件：functional.py和transforms.py，测试通过的工具包会在文末的地址开源。
 
-###functional
+# functional
 
 （\*为较为常用的函数）
 
@@ -149,4 +149,4 @@ tags:
 
 修改：考虑opencv的灰度图本来就是相同的三个通道，故不修改该函数。
 
-###tranforms
+# tranforms
