@@ -11,7 +11,9 @@ tags:
     - Opencv
 ---
 
-原始的torchvision工具包只支持PIL图像的各种增强操作，模型转换为caffe后，输入图像存在偏差，导致模型性能下降。为了消除该问题，需要实现一套基于opencv的图像增强工具，本文在原先torchvision.transform的基础上进行修改，主要涉及两个文件：functional.py和transforms.py，测试通过的工具包会在文末的地址开源。
+原始的torchvision工具包只支持PIL图像的各种增强操作，模型转换为caffe后，输入图像存在偏差，导致模型性能下降。为了消除该问题，需要实现一套基于opencv的图像增强工具，本文在原先torchvision.transform的基础上进行修改，主要涉及两个文件：functional.py和transforms.py，
+
+详细代码见Github主页：[TransformsbyOpencv](https://github.com/Chen94yue/Torchvision.TransformsbyOpencv)
 
 # functional.py (function)
 
