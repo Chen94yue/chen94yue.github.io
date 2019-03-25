@@ -70,7 +70,6 @@ layer {
 
 由于项目时间紧，而且该实现也属于尝试性质，考虑到类别数量不大。计划采用全随机的方式来生成图像对具体的实现方案如下：
 ——使用两个data层，分别读取一组图片样本，每一个图片样本包括他的图片和类别标签（0~11）。分别送入两路共享权重的resnet网络，分别接两个softmax loss。修改Contrastive Loss的源码，将输入改为4个，分别为两路的特征，和两路的标签，标签相同对应y=1，标签不同对应y=0。在原始的分类网络的特征输出上分别加上两个全连接层（共享权重）输出一个256维的向量，计算Contrastive Loss。
-
 新的带分类的孪生网络的写法可以参考上面提到的官方的教程。Contrastive Loss代码的修改可以参考[博客](https://blog.csdn.net/zllljf/article/details/80970557)，具体而言就是将源码中所有如下判别：
 ```c
 if (static_cast<int>(bottom[2]->cpu_data()[i]))
@@ -80,7 +79,5 @@ if (static_cast<int>(bottom[2]->cpu_data()[i]))
 if (bottom[2]->cpu_data()[i] == bottom[3]->cpu_data()[i])
 ```
 即可。当然记得增加相应的变量和判别。另外GPU的实现代码也需要修改。方法类似。
-
 现在我们有三个loss，由于两个softmax是等价的，故weight设为0.5即可。考虑到Contrastive Loss中找到相同类的不高，暂时没有给他分配太高的权重，权重设为0.1。
-
 个人认为比较合适的权重应该参照softmax收敛时的loss的大小a。因为Contrastive Loss最大值基本为1（没有相同类）那么Contrastive Loss的weight应该设为a*1，这样保证两个loss在总loss中的比重相同。当然也可以依据此基准进行调整。
