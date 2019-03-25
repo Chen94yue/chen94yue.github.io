@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      工程（一）: Contrastive Loss with Softmax Loss
 subtitle:   Classification
 date:       2018-09-19

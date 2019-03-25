@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      Pytorch学习9：Tensor
 subtitle:   Pytorch
 date:       2018-05-06

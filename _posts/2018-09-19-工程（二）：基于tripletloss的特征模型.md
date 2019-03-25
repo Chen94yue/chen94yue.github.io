@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      工程（二）：基于tripletloss的特征模型
 subtitle:   Embedding
 date:       2019-03-15

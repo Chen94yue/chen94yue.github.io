@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      Caffe和Pytorch图片数据读入差异“深度”分析
 subtitle:   fuck you Caffe
 date:       2019-03-08

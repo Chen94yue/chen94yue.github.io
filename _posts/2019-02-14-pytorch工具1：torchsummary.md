@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     
 title:      Pytorch工具1：torchsummary
 subtitle:   Pytorch
 date:       2019-02-14
