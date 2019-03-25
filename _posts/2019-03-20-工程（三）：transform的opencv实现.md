@@ -1,5 +1,5 @@
 ---
-layout:     
+layout:     post
 title:      Torchvision扩充：基于Opencv的图像增强
 subtitle:   Pytorch
 date:       2019-03-22

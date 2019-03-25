@@ -1,5 +1,5 @@
 ---
-layout:     
+layout:     post
 title:      Embedding Label Structures for Fine Grained Feature R
 subtitle:   Fine-grained
 date:       2018-05-19

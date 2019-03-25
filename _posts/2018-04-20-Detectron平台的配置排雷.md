@@ -1,5 +1,5 @@
 ---
-layout:     
+layout:     post
 title:      Detectron平台的配置排雷
 subtitle:   Detection
 date:       2018-04-20
