@@ -1,5 +1,5 @@
 ---
-layout:     
+layout:     post
 title:      Detectron平台下实现Cityperson数据库的使用
 subtitle:   Detection
 date:       2018-05-18

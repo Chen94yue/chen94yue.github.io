@@ -1,5 +1,5 @@
 ---
-layout:     
+layout:     post
 title:      Contrastive Loss with Softmax Loss
 subtitle:   Classification
 date:       2018-09-19

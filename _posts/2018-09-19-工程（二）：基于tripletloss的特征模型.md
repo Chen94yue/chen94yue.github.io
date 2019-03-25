@@ -1,5 +1,5 @@
 ---
-layout:     
+layout:     post
 title:      基于tripletloss的特征模型
 subtitle:   Embedding
 date:       2019-03-15
