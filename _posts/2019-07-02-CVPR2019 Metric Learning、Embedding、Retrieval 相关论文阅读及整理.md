@@ -10,10 +10,9 @@ tags:
 	- Metric Learning
 	- Embedding
 	- Retrival
-
 ---
 
-
+ 
 # Paper List
 
 1. A Theoretically Sound Upper Bound on the Triplet Loss for Improving the Efficiency of Deep Distance Metric Learning
