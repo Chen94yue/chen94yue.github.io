@@ -7,9 +7,11 @@ author:     Shaozi
 header-img: 
 catalog: true
 tags:
-	- Metric Learning
-	- Embedding
-	- Retrival
+```
+- Metric Learning
+- Embedding
+- Retrival
+```
 ---
 
 # Paper List
@@ -34,7 +36,6 @@ tags:
 ## CUB-200-2011
 
 |Method|R@1|R@2|R@4|R@8|
-|:—:|:—:|:—:|:—:|:—:|
 | 1. Discriminative | 51.43| 64.23 | 74.31 | 82.83 |
 | 3.RLL-(L,M,H) | 61.3 | 72.7 | 82.7 | 89.4 |
 | 5.SCHE | 66.2 | 76.3 | 84.1 | 90.1 |
@@ -48,7 +49,6 @@ tags:
 ## CAR196
 
 |Method|R@1|R@2|R@4|R@8|
-|:—:|:—:|:—:|:—:|:—:|
 | 1. Discriminative | 68.31 | 78.21 | 85.22 | 91.18 |
 | 3.RLL-(L,M,H) | 82.1 | 89.3 | 93.7 | 96.7 |
 | 5.SCHE | 91.7 | 95.3 | 97.3 | 98.4 |
@@ -62,7 +62,6 @@ tags:
 ## SOP
 
 |Method|R@1|R@10|R@100|
-|:—:|:—:|:—:|:—:|
 | 3.RLL-(L,M,H) | 79.8 | 91.3 | 96.3 |
 | 5.SCHE | 77.6 | 89.1 | 94.7 |
 | 6.MS | 78.2 | 90.5 | 96.0 |
@@ -75,7 +74,6 @@ tags:
 ## In-shop
 
 |Method|R@1|R@10|R@20|R@30|
-|:—:|:—:|:—:|:—:|:—:|
 | 5.SCHE | 91.9 | 98.0 | 98.7 | 99.0 |
 | 6.MS | 89.7 | 97.9 | 98.5 | 98.8 |
 | 7.FastAP | 90.9 | 97.7 | 98.5 | 98.8 |
