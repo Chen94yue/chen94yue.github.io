@@ -4,12 +4,12 @@ title:      CVPR2019 Metric Learning、Embedding、Retrieval 相关论文阅读�
 subtitle:   Paper reading
 date:       2019-07-01
 author:     Shaozi
-header-img: 
+header-img:
 catalog: true
 tags:
-	- Metric Learning
-	- Embedding
-	- Retrival
+    - Metric Learning
+    - Embedding
+    - Retrival
 ---
 
  
