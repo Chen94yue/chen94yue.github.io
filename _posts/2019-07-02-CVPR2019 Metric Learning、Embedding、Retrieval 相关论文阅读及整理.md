@@ -7,9 +7,9 @@ author:     Shaozi
 header-img:
 catalog: true
 tags:
-	- Metric Learning
-	- Embedding
-	- Retrival
+- Metric Learning
+- Embedding
+- Retrival
 ---
 
  
@@ -84,6 +84,7 @@ tags:
 | 10. DCES | 85.7 | 95.5 | 96.9| 97.5 |
 
 **下面按照以上统计的性能高低概括论文**
+
 ## Stochastic Class-based Hard Example Mining for Deep Metric Learning
 
 
