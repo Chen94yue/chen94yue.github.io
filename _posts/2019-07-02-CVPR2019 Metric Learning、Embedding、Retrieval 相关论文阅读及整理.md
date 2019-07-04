@@ -7,9 +7,9 @@ author:     Shaozi
 header-img:
 catalog: true
 tags:
-	- Metric Learning
-	- Embedding
-	- Retrival
+    - Metric Learning
+    - Embedding
+    - Retrival
 ---
 
  
