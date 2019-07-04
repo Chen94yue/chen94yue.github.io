@@ -7,13 +7,15 @@ author:     Shaozi
 header-img:
 catalog: true
 tags:
-    - Metric Learning
-    - Embedding
-    - Retrival
+	- Metric Learning
+	- Embedding
+	- Retrival
 ---
 
  
-# Paper List
+## Paper List
+
+这里从CVPR2019收录的论文中挑选了出了标准的度量学习相关的论文，相近领域以及一些特定应用场景的论文被剔除了。总共有十四篇。
 
 1. A Theoretically Sound Upper Bound on the Triplet Loss for Improving the Efficiency of Deep Distance Metric Learning
 2. End-to-End Supervised Product Quantization for Image Search and Retrieval
@@ -30,9 +32,11 @@ tags:
 13. Deep Asymmetric Metric Learning via Rich Relationship Mining
 14. Hardness-Aware Deep Metric Learning
 
-# 数据集及评价指标：
+## 数据集及评价指标：
 
-## CUB-200-2011
+这里对文章中的实验结果进行了总结，方便对比，但是由于不同的方法的实验条件不同，所以不能完全依靠实验结果来判断算法的好坏。
+
+### CUB-200-2011
 
 |Method|R@1|R@2|R@4|R@8|
 | 1. Discriminative | 51.43| 64.23 | 74.31 | 82.83 |
@@ -45,7 +49,7 @@ tags:
 | 13. RRM | 55.1 | 66.5 | 76.8 | 85.3 |
 | 14. HDML | 53.7 | 65.7 | 76.7 | 85.7 |
 
-## CAR196
+### CAR196
 
 |Method|R@1|R@2|R@4|R@8|
 | 1. Discriminative | 68.31 | 78.21 | 85.22 | 91.18 |
@@ -58,7 +62,7 @@ tags:
 | 13. RRM | 73.5 | 82.6 | 89.1 | 93.5 |
 | 14. HDML | 79.1 | 87.1 | 92.1 | 95.5 |
 
-## SOP
+### SOP
 
 |Method|R@1|R@10|R@100|
 | 3.RLL-(L,M,H) | 79.8 | 91.3 | 96.3 |
@@ -70,11 +74,26 @@ tags:
 | 13. RRM | 69.7 | 85.2 | 93.2 |
 | 14. HDML | 68.7 | 83.2 | 92.4 |
 
-## In-shop
+### In-shop
 
-|Method|R@1|R@10|R@20|R@30|
+|Method|R@1|R@10|R@20|R@30| 
 | 5.SCHE | 91.9 | 98.0 | 98.7 | 99.0 |
 | 6.MS | 89.7 | 97.9 | 98.5 | 98.8 |
 | 7.FastAP | 90.9 | 97.7 | 98.5 | 98.8 |
 | 9. DE-DSP (N-pair) | 78.6 | 93.8 | 95.5 | 96.2 |
 | 10. DCES | 85.7 | 95.5 | 96.9| 97.5 |
+
+**下面按照以上统计的性能高低概括论文**
+## Stochastic Class-based Hard Example Mining for Deep Metric Learning
+￼![][image-1]
+本文主要提供了一个度量学习中男例挖掘的方法，简单的讲就是度量学习和分类的结合。使用分类的结果来挑选计算loss的难例。只计算难例类中的难样本的loss。
+方法上感觉不是很novel（也可能是我没看懂），但是性能很好。有几个Trick记录一下：
+- 计算batch中的loss的均值时，只考虑大于0的。
+- 使用了second-order pooling。
+- 从第四个stage提特征。
+- input的图像从224改为336
+从文章提供的结果来看，后三个Trick的效果还是很明显的：
+![][image-2]
+
+[image-1]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nn6ebjlmj20bw07edhf.jpg
+[image-2]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nomt96czj209k03kwer.jpg
