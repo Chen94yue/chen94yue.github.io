@@ -7,9 +7,9 @@ author:     Shaozi
 header-img:
 catalog: true
 tags:
-    - Metric Learning
-    - Embedding
-    - Retrival
+	- Metric Learning
+	- Embedding
+	- Retrival
 ---
 
  
@@ -85,7 +85,9 @@ tags:
 
 **下面按照以上统计的性能高低概括论文**
 ## Stochastic Class-based Hard Example Mining for Deep Metric Learning
-￼![][image-1]
+
+
+![][image-1]
 本文主要提供了一个度量学习中男例挖掘的方法，简单的讲就是度量学习和分类的结合。使用分类的结果来挑选计算loss的难例。只计算难例类中的难样本的loss。
 方法上感觉不是很novel（也可能是我没看懂），但是性能很好。有几个Trick记录一下：
 - 计算batch中的loss的均值时，只考虑大于0的。
@@ -95,5 +97,20 @@ tags:
 从文章提供的结果来看，后三个Trick的效果还是很明显的：
 ![][image-2]
 
+实验结果还是比其他论文高太多了，没有公开代码。可能有坑
+
+## Divide and Conquer the Embedding Space for Metric Learning
+
+本文认为，在度量学习中，Embedding空间并没有被很好的利用。 所以提出了一个聚类加度量学习的框架，并且能够很好的应用于不同的算法下。
+![][image-3]
+这篇文章写的比较通俗易懂，属于很好实现的类型，而且提供了代码，性能相比于上一篇差别不大，很有借鉴价值。
+仔细看来这一篇和上一篇很相近，从两个不同的角度优化了计算loss时样本的选择。其实都是在挑相近的难例。一个用聚类，一个用分类。可能有监督的分类任务更胜一筹吧。但是对于没有类别标签的任务，这一篇可能更有价值。
+这一篇的聚类部分使用了k-means，不知道实际使用时速度如何，特别是在大规模数据的应用场景下。不过聚类是每一个epoch进行的工作，所以应该还好。如果知道大类别，能不能直接按类别进行划分了？
+
+我决定实验一下。。。。。。。。
+
+（未完待续）
+
 [image-1]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nn6ebjlmj20bw07edhf.jpg
 [image-2]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nomt96czj209k03kwer.jpg
+[image-3]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nrxraovmj20of07bgpi.jpg
