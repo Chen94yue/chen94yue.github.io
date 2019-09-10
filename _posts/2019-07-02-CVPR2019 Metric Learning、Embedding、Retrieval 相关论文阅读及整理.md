@@ -110,7 +110,112 @@ tags:
 
 我决定实验一下。。。。。。。。
 
-（未完待续）
+代码能够复现论文中的性能，但是在我的目标数据集上表现欠佳，由于使用了faiss所以代码不怎么支持GPU并行，训练效率较低。
+
+## Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning
+
+这篇论文角度新颖，通过归纳loss计算中梯度规律，对不同的度量学习loss进行了整理，将形式各样的loss通过同样的形式进行表达。并且分析了不同loss在优化过程中的相同点和不同点。并且通过归纳和整理，提出了一种更为全面的Multi-Similarity Loss。在多个实验集上都有很好的实验效果。
+
+本篇文章对不同的度量loss有较为全面的整理，并且对不同loss之间的区别和联系有较为深入的分析，很适合用来学习。
+
+Code主页已放出，但还未开源。实验实现表述较少，复现难度较大。
+
+## 补充：No Fuss Distance Metric Learning using Proxies
+
+这篇论文概括起来很简单，在计算loss的时候不再挑选样本，而是从一个池子中挑选出样本的代理来进行比较。这个池子是不断学习更新的。有点像电影《铁甲钢拳》，PK的时候不是用真人，而是使用一个替代品（机器人）。这里代理的数量决定了最后的性能，论文中给的建议是大于0.5的图片类别数。
+
+我这里使用了一个非官方复现的版本：[Git][1]
+
+同样这版论文不支持分布式训练。我对代码进行了修改。原版代码和修改后的代码都可以复现论文中的性能。惊奇的发现这个算法的效率奇高，基本几分钟就能出现很好的结果了。（GPU为v100）
+
+于是我在我的目标数据集上进行了测试。然后问题来了，由于目标数据集包含了两万多类，按照按照代码中的实现，代理样本的数量为类别数，在计算时降计算一个大小为2w\*embedding的tensor。直接超显存。不过个人觉得有优化的空间，因为一个2048-2048的全连接层，tensor的大小也是差不多这个量级的，为什么不怎么吃显存呢？
+
+下面是code reading部分：
+loss input：
+```python
+loss = criterion(m, y.cuda())
+```
+其中`m`为embedding，batchsize为256，dim为64，所以是一个256\*64的tensor。
+`y`为label，64\*1
+Loss函数如下：
+```python
+class ProxyNCA(torch.nn.Module):
+    def __init__(self, nb_classes, sz_embed, smoothing_const = 0.0, **kwargs):
+        torch.nn.Module.__init__(self)
+        self.proxies = torch.nn.Parameter(torch.randn(int(nb_classes*0.51), sz_embed) / 8)
+        self.smoothing_const = smoothing_const
+
+    def forward(self, X, T):
+
+        P = self.proxies
+        P = 3 * F.normalize(P, p = 2, dim = -1)
+        X = 3 * F.normalize(X, p = 2, dim = -1)
+        # 改为 X = 3 * X
+        D = pairwise_distance(
+            torch.cat(
+                [X, P]
+            ),
+            squared = True
+        )[:X.size()[0], X.size()[0]:]
+
+        T = binarize_and_smooth_labels(
+            T = T, nb_classes = len(P), smoothing_const = self.smoothing_const
+        )
+
+        # cross entropy with distances as logits, one hot labels
+        # note that compared to proxy nca, positive not excluded in denominator
+        loss = torch.sum(- T * F.log_softmax(D, -1), -1)
+
+        return loss.mean()
+```
+其中`proxies`为代理数量，这里使用了`torch.nn.Parameter`。将一个普通的tensor转换为可训练的tensor。`smoothing_const`，暂时不管是干嘛的。可以看到`proxies`最初是随机生成的。在forward中对其进行了L2 norm。很奇怪的一点是为什么要\*3。另外embedding `X`输出的时候已经经过一次L2 norm了，这里应该可以删去。虽然再计算一遍数值也不会变，但是占用了计算资源。
+
+接下来将`X`和`P`cat一下送入函数`pairwise_distance`:
+```python
+def pairwise_distance(a, squared=False):
+    """Computes the pairwise distance matrix with numerical stability."""
+    pairwise_distances_squared = torch.add(
+        a.pow(2).sum(dim=1, keepdim=True).expand(a.size(0), -1),
+        torch.t(a).pow(2).sum(dim=0, keepdim=True).expand(a.size(0), -1)
+    ) - 2 * (
+        torch.mm(a, torch.t(a))
+    )
+    # 修改为： pairwise_distances_squared = torch.mm(a, torch.t(a))
+    # Deal with numerical inaccuracies. Set small negatives to zero.
+    pairwise_distances_squared = torch.clamp(
+        pairwise_distances_squared, min=0.0
+    )
+    # Get the mask where the zero distances are at.
+    error_mask = torch.le(pairwise_distances_squared, 0.0)
+    # Optionally take the sqrt.
+    if squared:
+        pairwise_distances = pairwise_distances_squared
+    else:
+        pairwise_distances = torch.sqrt(
+            pairwise_distances_squared + error_mask.float() * 1e-16
+        )
+    # Undo conditionally adding 1e-16.
+    pairwise_distances = torch.mul(
+        pairwise_distances,
+        (error_mask == False).float()
+    )
+    # Explicitly set diagonals to zero.
+    mask_offdiagonals = 1 - torch.eye(
+        *pairwise_distances.size(),
+        device=pairwise_distances.device
+    )
+    pairwise_distances = torch.mul(pairwise_distances, mask_offdiagonals)
+    return pairwise_distances
+```
+
+这里第一步就把我看懵了……
+(省略中间过程)
+整个函数应该和`D = 18 - 2 * torch.mm(X, P.t())`等价。
+
+优化完这里，计算loss就轻量很多了。接下来可以开始训练目标数据集了。但是似乎不收敛…..(未完待续)
+
+
+[1]:	https://github.com/dichotomies/proxy-nca
 
 [image-1]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nn6ebjlmj20bw07edhf.jpg
 [image-2]:	http://ww1.sinaimg.cn/large/c310f833ly1g4nomt96czj209k03kwer.jpg
